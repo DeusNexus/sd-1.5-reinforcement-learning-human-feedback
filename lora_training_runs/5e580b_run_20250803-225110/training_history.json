@@ -1,0 +1,172 @@
+{
+    "epochs": [
+        {
+            "epoch": 1,
+            "train_loss": 0.12868201010345137,
+            "sample_prompt": "A 40 years old caucasian male with a neutral expression",
+            "sample_image_path": "lora_training_runs/5e580b_run_20250803-225110/lora_samples/sample_epoch_1.png",
+            "lora_adapter_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/lora_adapters_epoch_1",
+            "full_unet_checkpoint_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/full_unet_checkpoint_epoch_1.pth"
+        },
+        {
+            "epoch": 2,
+            "train_loss": 0.1223855559140136,
+            "sample_prompt": "A 28 years old asian female with a neutral expression",
+            "sample_image_path": "lora_training_runs/5e580b_run_20250803-225110/lora_samples/sample_epoch_2.png",
+            "lora_adapter_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/lora_adapters_epoch_2",
+            "full_unet_checkpoint_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/full_unet_checkpoint_epoch_2.pth"
+        },
+        {
+            "epoch": 3,
+            "train_loss": 0.12229110686503812,
+            "sample_prompt": "A 73 years old caucasian female with a neutral expression",
+            "sample_image_path": "lora_training_runs/5e580b_run_20250803-225110/lora_samples/sample_epoch_3.png",
+            "lora_adapter_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/lora_adapters_epoch_3",
+            "full_unet_checkpoint_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/full_unet_checkpoint_epoch_3.pth"
+        },
+        {
+            "epoch": 4,
+            "train_loss": 0.11949525552341853,
+            "sample_prompt": "A 28 years old caucasian male with a neutral expression",
+            "sample_image_path": "lora_training_runs/5e580b_run_20250803-225110/lora_samples/sample_epoch_4.png",
+            "lora_adapter_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/lora_adapters_epoch_4",
+            "full_unet_checkpoint_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/full_unet_checkpoint_epoch_4.pth"
+        },
+        {
+            "epoch": 5,
+            "train_loss": 0.12360781291740237,
+            "sample_prompt": "A 14 years old caucasian male with a neutral expression",
+            "sample_image_path": "lora_training_runs/5e580b_run_20250803-225110/lora_samples/sample_epoch_5.png",
+            "lora_adapter_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/lora_adapters_epoch_5",
+            "full_unet_checkpoint_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/full_unet_checkpoint_epoch_5.pth"
+        },
+        {
+            "epoch": 6,
+            "train_loss": 0.12521314016986315,
+            "sample_prompt": "A 41 years old caucasian female with a neutral expression",
+            "sample_image_path": "lora_training_runs/5e580b_run_20250803-225110/lora_samples/sample_epoch_6.png",
+            "lora_adapter_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/lora_adapters_epoch_6",
+            "full_unet_checkpoint_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/full_unet_checkpoint_epoch_6.pth"
+        },
+        {
+            "epoch": 7,
+            "train_loss": 0.1256577251418331,
+            "sample_prompt": "A 12 years old caucasian male smiling slightly",
+            "sample_image_path": "lora_training_runs/5e580b_run_20250803-225110/lora_samples/sample_epoch_7.png",
+            "lora_adapter_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/lora_adapters_epoch_7",
+            "full_unet_checkpoint_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/full_unet_checkpoint_epoch_7.pth"
+        },
+        {
+            "epoch": 8,
+            "train_loss": 0.11928563499026114,
+            "sample_prompt": "A 85 years old caucasian female smiling slightly",
+            "sample_image_path": "lora_training_runs/5e580b_run_20250803-225110/lora_samples/sample_epoch_8.png",
+            "lora_adapter_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/lora_adapters_epoch_8",
+            "full_unet_checkpoint_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/full_unet_checkpoint_epoch_8.pth"
+        },
+        {
+            "epoch": 9,
+            "train_loss": 0.11698239461946693,
+            "sample_prompt": "A 68 years old caucasian female with a neutral expression",
+            "sample_image_path": "lora_training_runs/5e580b_run_20250803-225110/lora_samples/sample_epoch_9.png",
+            "lora_adapter_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/lora_adapters_epoch_9",
+            "full_unet_checkpoint_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/full_unet_checkpoint_epoch_9.pth"
+        },
+        {
+            "epoch": 10,
+            "train_loss": 0.12345319002407726,
+            "sample_prompt": "A 43 years old caucasian female smiling slightly",
+            "sample_image_path": "lora_training_runs/5e580b_run_20250803-225110/lora_samples/sample_epoch_10.png",
+            "lora_adapter_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/lora_adapters_epoch_10",
+            "full_unet_checkpoint_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/full_unet_checkpoint_epoch_10.pth"
+        },
+        {
+            "epoch": 1,
+            "train_loss": 0.12309573729377307,
+            "sample_prompt": "A 34 years old caucasian male smiling slightly",
+            "sample_image_path": "lora_training_runs/5e580b_run_20250803-225110/lora_samples/sample_epoch_1.png",
+            "lora_adapter_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/lora_adapters_epoch_1",
+            "full_unet_checkpoint_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/full_unet_checkpoint_epoch_1.pth"
+        },
+        {
+            "epoch": 2,
+            "train_loss": 0.12146870608636684,
+            "sample_prompt": "A 27 years old caucasian female with a neutral expression",
+            "sample_image_path": "lora_training_runs/5e580b_run_20250803-225110/lora_samples/sample_epoch_2.png",
+            "lora_adapter_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/lora_adapters_epoch_2",
+            "full_unet_checkpoint_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/full_unet_checkpoint_epoch_2.pth"
+        },
+        {
+            "epoch": 3,
+            "train_loss": 0.12285076648230993,
+            "sample_prompt": "A 33 years old caucasian male with a neutral expression",
+            "sample_image_path": "lora_training_runs/5e580b_run_20250803-225110/lora_samples/sample_epoch_3.png",
+            "lora_adapter_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/lora_adapters_epoch_3",
+            "full_unet_checkpoint_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/full_unet_checkpoint_epoch_3.pth"
+        },
+        {
+            "epoch": 4,
+            "train_loss": 0.12209755084426974,
+            "sample_prompt": "A 5 years old afroamerican female smiling happily",
+            "sample_image_path": "lora_training_runs/5e580b_run_20250803-225110/lora_samples/sample_epoch_4.png",
+            "lora_adapter_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/lora_adapters_epoch_4",
+            "full_unet_checkpoint_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/full_unet_checkpoint_epoch_4.pth"
+        },
+        {
+            "epoch": 5,
+            "train_loss": 0.12377099199313304,
+            "sample_prompt": "A 42 years old caucasian male smiling slightly",
+            "sample_image_path": "lora_training_runs/5e580b_run_20250803-225110/lora_samples/sample_epoch_5.png",
+            "lora_adapter_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/lora_adapters_epoch_5",
+            "full_unet_checkpoint_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/full_unet_checkpoint_epoch_5.pth"
+        },
+        {
+            "epoch": 6,
+            "train_loss": 0.12416598468249782,
+            "sample_prompt": "A 28 years old caucasian female smiling slightly",
+            "sample_image_path": "lora_training_runs/5e580b_run_20250803-225110/lora_samples/sample_epoch_6.png",
+            "lora_adapter_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/lora_adapters_epoch_6",
+            "full_unet_checkpoint_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/full_unet_checkpoint_epoch_6.pth"
+        },
+        {
+            "epoch": 7,
+            "train_loss": 0.12100943325802527,
+            "sample_prompt": "A 11 years old asian male smiling slightly",
+            "sample_image_path": "lora_training_runs/5e580b_run_20250803-225110/lora_samples/sample_epoch_7.png",
+            "lora_adapter_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/lora_adapters_epoch_7",
+            "full_unet_checkpoint_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/full_unet_checkpoint_epoch_7.pth"
+        },
+        {
+            "epoch": 8,
+            "train_loss": 0.11875210910294785,
+            "sample_prompt": "A 20 years old caucasian female with a neutral expression",
+            "sample_image_path": "lora_training_runs/5e580b_run_20250803-225110/lora_samples/sample_epoch_8.png",
+            "lora_adapter_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/lora_adapters_epoch_8",
+            "full_unet_checkpoint_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/full_unet_checkpoint_epoch_8.pth"
+        },
+        {
+            "epoch": 9,
+            "train_loss": 0.12154118331853324,
+            "sample_prompt": "A 28 years old caucasian male with a neutral expression",
+            "sample_image_path": "lora_training_runs/5e580b_run_20250803-225110/lora_samples/sample_epoch_9.png",
+            "lora_adapter_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/lora_adapters_epoch_9",
+            "full_unet_checkpoint_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/full_unet_checkpoint_epoch_9.pth"
+        },
+        {
+            "epoch": 10,
+            "train_loss": 0.11847981466099518,
+            "sample_prompt": "A 46 years old caucasian male smiling slightly",
+            "sample_image_path": "lora_training_runs/5e580b_run_20250803-225110/lora_samples/sample_epoch_10.png",
+            "lora_adapter_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/lora_adapters_epoch_10",
+            "full_unet_checkpoint_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/full_unet_checkpoint_epoch_10.pth"
+        },
+        {
+            "epoch": 11,
+            "train_loss": 0.12073259377924005,
+            "sample_prompt": "A 22 years old caucasian female smiling slightly",
+            "sample_image_path": "lora_training_runs/5e580b_run_20250803-225110/lora_samples/sample_epoch_11.png",
+            "lora_adapter_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/lora_adapters_epoch_11",
+            "full_unet_checkpoint_path": "lora_training_runs/5e580b_run_20250803-225110/lora_checkpoints/full_unet_checkpoint_epoch_11.pth"
+        }
+    ]
+}

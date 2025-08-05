@@ -15,6 +15,14 @@
             "sample_image_path": "lora_training_runs/af641a_run_20250805-173847/lora_samples/sample_epoch_2.png",
             "lora_adapter_path": "lora_training_runs/af641a_run_20250805-173847/lora_checkpoints/lora_adapters_epoch_2",
             "full_unet_checkpoint_path": "lora_training_runs/af641a_run_20250805-173847/lora_checkpoints/full_unet_checkpoint_epoch_2.pth"
+        },
+        {
+            "epoch": 3,
+            "train_loss": 0.11751426164825192,
+            "sample_prompt": "A 28 years old caucasian female smiling slightly",
+            "sample_image_path": "lora_training_runs/af641a_run_20250805-173847/lora_samples/sample_epoch_3.png",
+            "lora_adapter_path": "lora_training_runs/af641a_run_20250805-173847/lora_checkpoints/lora_adapters_epoch_3",
+            "full_unet_checkpoint_path": "lora_training_runs/af641a_run_20250805-173847/lora_checkpoints/full_unet_checkpoint_epoch_3.pth"
         }
     ]
 }

@@ -7,6 +7,14 @@
             "sample_image_path": "lora_training_runs/af641a_run_20250805-173847/lora_samples/sample_epoch_1.png",
             "lora_adapter_path": "lora_training_runs/af641a_run_20250805-173847/lora_checkpoints/lora_adapters_epoch_1",
             "full_unet_checkpoint_path": "lora_training_runs/af641a_run_20250805-173847/lora_checkpoints/full_unet_checkpoint_epoch_1.pth"
+        },
+        {
+            "epoch": 2,
+            "train_loss": 0.12038397092116249,
+            "sample_prompt": "A 24 years old caucasian male with a neutral expression",
+            "sample_image_path": "lora_training_runs/af641a_run_20250805-173847/lora_samples/sample_epoch_2.png",
+            "lora_adapter_path": "lora_training_runs/af641a_run_20250805-173847/lora_checkpoints/lora_adapters_epoch_2",
+            "full_unet_checkpoint_path": "lora_training_runs/af641a_run_20250805-173847/lora_checkpoints/full_unet_checkpoint_epoch_2.pth"
         }
     ]
 }

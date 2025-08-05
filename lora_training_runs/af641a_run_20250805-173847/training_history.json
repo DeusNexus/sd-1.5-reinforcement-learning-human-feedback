@@ -31,6 +31,30 @@
             "sample_image_path": "lora_training_runs/af641a_run_20250805-173847/lora_samples/sample_epoch_4.png",
             "lora_adapter_path": "lora_training_runs/af641a_run_20250805-173847/lora_checkpoints/lora_adapters_epoch_4",
             "full_unet_checkpoint_path": "lora_training_runs/af641a_run_20250805-173847/lora_checkpoints/full_unet_checkpoint_epoch_4.pth"
+        },
+        {
+            "epoch": 5,
+            "train_loss": 0.11812553187115905,
+            "sample_prompt": "A 25 years old caucasian male smiling happily",
+            "sample_image_path": "lora_training_runs/af641a_run_20250805-173847/lora_samples/sample_epoch_5.png",
+            "lora_adapter_path": "lora_training_runs/af641a_run_20250805-173847/lora_checkpoints/lora_adapters_epoch_5",
+            "full_unet_checkpoint_path": "lora_training_runs/af641a_run_20250805-173847/lora_checkpoints/full_unet_checkpoint_epoch_5.pth"
+        },
+        {
+            "epoch": 6,
+            "train_loss": 0.12298630992516012,
+            "sample_prompt": "A 22 years old caucasian male smiling slightly",
+            "sample_image_path": "lora_training_runs/af641a_run_20250805-173847/lora_samples/sample_epoch_6.png",
+            "lora_adapter_path": "lora_training_runs/af641a_run_20250805-173847/lora_checkpoints/lora_adapters_epoch_6",
+            "full_unet_checkpoint_path": "lora_training_runs/af641a_run_20250805-173847/lora_checkpoints/full_unet_checkpoint_epoch_6.pth"
+        },
+        {
+            "epoch": 7,
+            "train_loss": 0.12200742674083952,
+            "sample_prompt": "A 18 years old caucasian female with a neutral expression",
+            "sample_image_path": "lora_training_runs/af641a_run_20250805-173847/lora_samples/sample_epoch_7.png",
+            "lora_adapter_path": "lora_training_runs/af641a_run_20250805-173847/lora_checkpoints/lora_adapters_epoch_7",
+            "full_unet_checkpoint_path": "lora_training_runs/af641a_run_20250805-173847/lora_checkpoints/full_unet_checkpoint_epoch_7.pth"
         }
     ]
 }

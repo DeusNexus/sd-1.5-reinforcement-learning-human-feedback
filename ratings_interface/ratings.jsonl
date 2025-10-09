@@ -1,0 +1,11 @@
+{"prompt_id": "02909", "preferred_img": "02909_B.jpg", "rejected_img": "02909_A.jpg", "rating_status": "PREFERRED", "timestamp": "2025-10-09T12:07:16.050041"}
+{"prompt_id": "2622c", "preferred_img": "2622c_B.jpg", "rejected_img": "2622c_A.jpg", "rating_status": "PREFERRED", "timestamp": "2025-10-09T12:07:17.356775"}
+{"prompt_id": "270e1", "preferred_img": "270e1_A.jpg", "rejected_img": "270e1_B.jpg", "rating_status": "PREFERRED", "timestamp": "2025-10-09T12:07:18.565374"}
+{"prompt_id": "2acb8", "preferred_img": "2acb8_B.jpg", "rejected_img": "2acb8_A.jpg", "rating_status": "PREFERRED", "timestamp": "2025-10-09T12:07:19.623566"}
+{"prompt_id": "7261a", "preferred_img": "7261a_A.jpg", "rejected_img": "7261a_B.jpg", "rating_status": "PREFERRED", "timestamp": "2025-10-09T12:07:20.731851"}
+{"prompt_id": "738f8", "rejected_img_A": "738f8_A.jpg", "rejected_img_B": "738f8_B.jpg", "rating_status": "SKIPPED_BAD_FIT", "timestamp": "2025-10-09T12:07:21.690014"}
+{"prompt_id": "a9dba", "rejected_img_A": "a9dba_A.jpg", "rejected_img_B": "a9dba_B.jpg", "rating_status": "SKIPPED_BAD_FIT", "timestamp": "2025-10-09T12:07:22.596616"}
+{"prompt_id": "ab899", "preferred_img": "ab899_B.jpg", "rejected_img": "ab899_A.jpg", "rating_status": "PREFERRED", "timestamp": "2025-10-09T12:07:23.755331"}
+{"prompt_id": "c5f71", "preferred_img": "c5f71_A.jpg", "rejected_img": "c5f71_B.jpg", "rating_status": "PREFERRED", "timestamp": "2025-10-09T12:07:25.065078"}
+{"prompt_id": "e27cb", "rejected_img_A": "e27cb_A.jpg", "rejected_img_B": "e27cb_B.jpg", "rating_status": "SKIPPED_BAD_FIT", "timestamp": "2025-10-09T12:07:25.871597"}
+{"prompt_id": "e27cb", "preferred_img": "e27cb_B.jpg", "rejected_img": "e27cb_A.jpg", "rating_status": "PREFERRED", "timestamp": "2025-10-09T12:07:27.236774"}

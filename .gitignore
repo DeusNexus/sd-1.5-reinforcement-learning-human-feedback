@@ -1,7 +1,5 @@
 .venv
 venv
-*.safetensors
 *.pth
 .gradio
 __pycache__
-lora_training_runs

@@ -13,10 +13,10 @@ The current dataset includes blurry, noisy, and low-quality images. When the LoR
 
 ## Current pipeline entrypoints
 - Script: `python -m dataset_quality.pipeline --dataset-root datasets/appa-real-dataset_v2 --output-root datasets/appa-real-dataset_v2_improved`
-- Notebook: `notebooks/dataset_quality.ipynb`
-- Review notebook: `notebooks/dataset_quality_review.ipynb`
-- Black-bar review: `notebooks/black_bar_review.ipynb`
+- Notebook: `0_dataset_quality.ipynb`
+- Review notebook: `0_dataset_quality_review.ipynb`
 - Config: `dataset_quality/config.py`
+- Cleaned dataset: `datasets/appa-real-dataset_v2_improved` (same layout as `datasets/appa-real-dataset_v2`)
 
 ## NIQE/BRISQUE dependencies
 - Preferred: OpenCV quality module via `opencv-contrib-python` (uses `cv2.quality`).
@@ -65,6 +65,7 @@ After filtering, rebuild train/valid/test splits to preserve class balance. If s
 ## Phase 6: Retrain LoRA on cleaned dataset
 Once the cleaned dataset is ready:
 - Retrain LoRA from scratch.
+- Use `datasets/appa-real-dataset_v2_improved` as the training root in `1_diffusion_rl_base.ipynb` and `1_diffusion_rl_base_colab_v2.ipynb`.
 - Compare generation quality against the current LoRA.
 - Only then resume RLHF data generation and human labeling.
 

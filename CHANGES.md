@@ -2,9 +2,13 @@
 
 This file records implemented changes in chronological order. New entries go at the top.
 
-## Entry 016 (latest) - 24-01-2025
-- Replaced `5_dataset_improvement.ipynb` with the modular dataset quality pipeline (`dataset_quality/`) and notebooks `notebooks/dataset_quality.ipynb` + `notebooks/dataset_quality_review.ipynb`.
-- Added focused inspection notebook for black-bar cases: `notebooks/black_bar_review.ipynb`.
+## Entry 017 (latest) - 25-01-2025
+- Documented the cleaned dataset at `datasets/appa-real-dataset_v2_improved` as the base LoRA training source.
+- Updated dataset quality notebook references to `0_dataset_quality.ipynb` and `0_dataset_quality_review.ipynb`.
+- Removed stale references to the black-bar review notebook.
+
+## Entry 016 - 24-01-2025
+- Replaced `5_dataset_improvement.ipynb` with the modular dataset quality pipeline (`dataset_quality/`) and notebooks `0_dataset_quality.ipynb` + `0_dataset_quality_review.ipynb`.
 - Removed `5_dataset_improvement.ipynb` from the repo.
 
 ## Entry 015 - 23-01-2025

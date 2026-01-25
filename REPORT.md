@@ -27,7 +27,8 @@ The long-term goal is to create a model that not only produces realistic faces, 
 
 ## Current status (based on what exists in the repo)
 ### Base training is done and saved
-- **Dataset is present** in `datasets/appa-real-dataset_v2`.
+- **Dataset is present** in `datasets/appa-real-dataset_v2_improved` (same layout as `datasets/appa-real-dataset_v2`).
+- **Base LoRA should be retrained** using `datasets/appa-real-dataset_v2_improved`.
 - **LoRA training notebooks exist** and have produced training runs:
   - `lora_training_runs/519037_run_20250903-160027` (5 epochs)
   - `lora_training_runs/54a57c_run_20250904-075419` (24 epochs)
@@ -53,7 +54,7 @@ There is no notebook or script that trains LoRA with the preference data yet. Th
 
 ## Data and assets (what is already here)
 ### Dataset
-Located in `datasets/appa-real-dataset_v2`:
+Located in `datasets/appa-real-dataset_v2_improved`:
 - `labels_metadata_train.csv` (4,065 rows)
 - `labels_metadata_valid.csv` (1,482 rows)
 - `labels_metadata_test.csv` (1,978 rows)
@@ -236,7 +237,7 @@ This plan is consistent with what is built so far, except the DPO training loop 
 - `datasets/appa-real-dataset_v2_improved/reports/quality_report.csv`
 - `datasets/appa-real-dataset_v2_improved/reports/dropped_images.csv`
 - `datasets/appa-real-dataset_v2_improved/reports/kept_images.csv`
-- Review notebooks: `notebooks/dataset_quality.ipynb`, `notebooks/dataset_quality_review.ipynb`, `notebooks/black_bar_review.ipynb`
+- Review notebooks: `0_dataset_quality.ipynb`, `0_dataset_quality_review.ipynb`
 
 ## How this differs from the old chats
 The old chats focused on planning and feasibility. The repo now shows that:
@@ -248,18 +249,21 @@ The old chats focused on planning and feasibility. The repo now shows that:
 So the project has moved from concept to real artifacts, but has not yet completed the preference-training loop.
 
 ## Gaps and next steps
-1. **Implement DPO training**:
+1. **Retrain the base LoRA on the improved dataset**:
+   - Point `1_diffusion_rl_base.ipynb` and `1_diffusion_rl_base_colab_v2.ipynb` at `datasets/appa-real-dataset_v2_improved`.
+   - Regenerate RLHF samples after the new base LoRA is trained.
+2. **Implement DPO training**:
    - Build a dataset loader that reads `ratings_real.jsonl` and resolves paths in `generation_manifest.jsonl`.
    - Load the saved latents and compute a preference loss (DPO-style).
    - Update only the LoRA parameters.
-2. **Confirm latent representation before scaling labeling**:
+3. **Confirm latent representation before scaling labeling**:
    - Current RLHF generation saves **initial noise latents**. If DPO is meant to use x0 latents, update generation now and regenerate before collecting more human ratings.
-3. **Unify prompt coverage**:
+4. **Unify prompt coverage**:
    - Decide whether to use full combinatorics (age, gender, ethnicity, emotion) or a reduced grid.
    - The current prompt list uses age increments of 5 (432 prompts).
-4. **Scale up ratings**:
+5. **Scale up ratings**:
    - 400 prompts are generated, but only 108 ratings exist. The preference set is still small.
-5. **Add evaluation prompts**:
+6. **Add evaluation prompts**:
    - Create a held-out set of prompts to compare base LoRA vs RLHF LoRA.
 
 If you want, I can also add a companion `DPO_train.ipynb` or a Python script that reads the manifest and ratings and performs the latent-space DPO training.

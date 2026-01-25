@@ -65,7 +65,8 @@ Optional refinement:
 - Iterate: regenerate samples -> re-rate -> re-train.
 
 ### Dataset quality (new pipeline in place)
-- Use `dataset_quality/` pipeline and review notebooks to curate a cleaned dataset before retraining LoRA.
+- Use `dataset_quality/` pipeline plus `0_dataset_quality.ipynb` and `0_dataset_quality_review.ipynb` to curate a cleaned dataset.
+- Retrain the base LoRA on `datasets/appa-real-dataset_v2_improved`.
 
 ## Suggested Deliverables
 - `dpo_train.ipynb` or `dpo_train.py`

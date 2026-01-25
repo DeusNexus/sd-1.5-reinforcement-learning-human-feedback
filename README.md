@@ -15,7 +15,11 @@ pip install -U pip
 pip install opencv-contrib-python numpy pandas pillow matplotlib tqdm torch pyiqa piq jupyter
 ```
 
-Run the dataset quality pipeline:
+`datasets/appa-real-dataset_v2_improved` is already included in the repo, so you can proceed directly to base LoRA training.
+
+Optional: rebuild the cleaned dataset yourself.
+1) Use `0_dataset_download.ipynb` to fetch and assemble the raw APPA-REAL dataset.
+2) Run the dataset quality pipeline:
 ```bash
 python -m dataset_quality.pipeline \
   --dataset-root datasets/appa-real-dataset_v2 \
@@ -27,17 +31,15 @@ Open the review notebook:
 jupyter lab
 ```
 Then run:
-- `notebooks/dataset_quality.ipynb`
-- `notebooks/dataset_quality_review.ipynb`
-- `notebooks/black_bar_review.ipynb`
+- `0_dataset_quality.ipynb`
+- `0_dataset_quality_review.ipynb`
 
 ## Repository map (what to look at)
 
 ### Dataset quality (cleaning + analysis)
 - `dataset_quality/` — modular pipeline (metrics, rules, reporting).
-- `notebooks/dataset_quality.ipynb` — runs the pipeline.
-- `notebooks/dataset_quality_review.ipynb` — visual review, metric distributions, label distributions.
-- `notebooks/black_bar_review.ipynb` — focused inspection of black-bar cases.
+- `0_dataset_quality.ipynb` — runs the pipeline.
+- `0_dataset_quality_review.ipynb` — visual review, metric distributions, label distributions.
 
 ### Base LoRA training
 - `1_diffusion_rl_base.ipynb` — local training notebook.
@@ -56,10 +58,15 @@ We start from:
 
 We produce a cleaned dataset at:
 - `datasets/appa-real-dataset_v2_improved`
+This cleaned dataset is the training source for the base LoRA (same layout as `datasets/appa-real-dataset_v2`). It is already uploaded to GitHub, so you can train immediately without downloading raw zips.
 
-### Download and place the initial dataset
-Download the APPA-Real release:
+### Optional: download and rebuild the initial dataset
+Use `0_dataset_download.ipynb` to download both zips (APPA-REAL images + metadata) and rebuild `datasets/appa-real-dataset_v2`.
+
+APPA-REAL images:
 `https://data.chalearnlap.cvc.uab.cat/AppaRealAge/appa-real-release.zip`
+All-categories metadata:
+`http://sergioescalera.com/wp-content/uploads/2018/06/allcategories_trainvalidtest_split.zip`
 
 Place the extracted dataset folder here:
 `datasets/appa-real-dataset_v2`
@@ -91,7 +98,7 @@ The improved dataset is rebuilt by filtering low-quality images based on:
 - NR-IQA (NIQE + BRISQUE)
 - Black bars (solid border bars)
 
-### APPA-REAL dataset citation (reference)
+### APPA-REAL dataset citations
 Source: https://chalearnlap.cvc.uab.cat/dataset/26/description/
 
 > **APPA-REAL DATABASE**  
@@ -103,8 +110,27 @@ Source: https://chalearnlap.cvc.uab.cat/dataset/26/description/
 >  
 > Furthermore, we provide per-image summaries in gt_avg_train.csv, gt_avg_valid.csv and gt_avg_test.csv, showing the number of ratings, average apparent age, standard deviation of apparent age and the real age for each image. A comparison of Age datasets characteristics is shown in the table 1.
 
+BibTeX:
+```bibtex
+@inproceedings{agustsson2017appareal,
+  title={Apparent and real age estimation in still images with deep residual regressors on APPA-REAL database.},
+  author={E Agustsson, R Timofte, S Escalera, X Baro, I Guyon, R Rothe.},
+  booktitle={12th IEEE International Conference and Workshops on Automatic Face and Gesture Recognition (FG), 2017},
+  year={2017},
+  organization={IEEE}
+}
+
+@inproceedings{clapes2018apparent,
+  title={From apparent to real age: gender, age, ethnic, makeup, and expression bias analysis in real age estimation},
+  author={Clap{\'e}s, Albert and Bilici, Ozan and Temirova, Dariia and Avots, Egils and Anbarjafari, Gholamreza and Escalera, Sergio},
+  booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition Workshops},
+  pages={2373--2382},
+  year={2018}
+}
+```
+
 ## Quality distributions (before vs kept)
-These plots are generated from `datasets/appa-real-dataset_v2_improved/reports/quality_report.csv` via `notebooks/dataset_quality_review.ipynb` and saved under `images/`.
+These plots are generated from `datasets/appa-real-dataset_v2_improved/reports/quality_report.csv` via `0_dataset_quality_review.ipynb` and saved under `images/`.
 
 - `images/roi_tenengrad.png`: ROI Tenengrad sharpness distribution (before vs kept).
   ![ROI Tenengrad](images/roi_tenengrad.png)

@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
+import json
 import logging
 import warnings
 from pathlib import Path
@@ -58,6 +60,15 @@ def _read_image(image_path: Path) -> tuple[Any | None, Any | None]:
         return None, None
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     return img, gray
+
+
+def _metric_signature(cfg: dict[str, Any], metric_cols: list[str]) -> str:
+    payload = {
+        "metric_config": cfg,
+        "metric_cols": metric_cols,
+    }
+    data = json.dumps(payload, sort_keys=True, default=str).encode("utf-8")
+    return hashlib.sha256(data).hexdigest()
 
 
 def compute_image_metrics(image_path: Path, cfg: dict[str, Any]) -> dict[str, Any]:
@@ -145,6 +156,23 @@ def compute_image_metrics(image_path: Path, cfg: dict[str, Any]) -> dict[str, An
     return metrics
 
 
+def _compute_badness(
+    df: pd.DataFrame,
+    higher_is_worse: list[str],
+    lower_is_worse: list[str],
+) -> pd.Series:
+    parts = []
+    for metric in higher_is_worse:
+        if metric in df.columns:
+            parts.append(df[metric].rank(pct=True, ascending=True, na_option="bottom"))
+    for metric in lower_is_worse:
+        if metric in df.columns:
+            parts.append(df[metric].rank(pct=True, ascending=False, na_option="bottom"))
+    if not parts:
+        return pd.Series([0.0] * len(df), index=df.index)
+    return pd.concat(parts, axis=1).mean(axis=1)
+
+
 def run_pipeline(
     dataset_root: Path,
     output_root: Path,
@@ -153,6 +181,7 @@ def run_pipeline(
     limit: int | None = None,
 ) -> pd.DataFrame:
     report_dir = report_dir or (output_root / "reports")
+    report_dir.mkdir(parents=True, exist_ok=True)
     warnings.filterwarnings("ignore", message="IProgress not found.*")
     cfg = {
         "SHARPNESS": config.SHARPNESS,
@@ -161,6 +190,7 @@ def run_pipeline(
         "NR_IQA": config.NR_IQA,
         "BLACK_BARS": config.BLACK_BARS,
         "THRESH": config.THRESH,
+        "PIPELINE": config.PIPELINE,
     }
     if cfg["NR_IQA"].get("warn_once", True):
         if not (cfg["NR_IQA"]["brisque_model_path"].exists() and cfg["NR_IQA"]["brisque_range_path"].exists()):
@@ -170,23 +200,88 @@ def run_pipeline(
     if limit:
         full_df = full_df.head(limit).copy()
 
-    rows = []
-    for row in tqdm(full_df.itertuples(index=False), total=len(full_df), mininterval=1.0):
-        metrics = compute_image_metrics(Path(row.image_path), cfg)
-        rows.append(
-            {
-                "imageId": int(row.imageId),
-                "split": row.split,
-                "age": int(row.age),
-                "gender": row.gender,
-                "ethnicity": row.ethnicity,
-                "emotion": row.emotion,
-                "image_path": str(row.image_path),
-                **metrics,
-            }
-        )
+    metric_cols = [
+        "load_error",
+        "lap_var",
+        "tenengrad",
+        "roi_lap_var",
+        "roi_tenengrad",
+        "face_found",
+        "face_area_ratio",
+        "jpeg_blockiness",
+        "artifact_score",
+        "niqe",
+        "brisque",
+        "black_bar_score",
+        "black_bar_area_ratio",
+        "black_bar_span_ratio",
+        "black_bar_solid",
+        "black_bar_count",
+    ]
+    base_cols = ["imageId", "split", "age", "gender", "ethnicity", "emotion", "image_path"]
+    required_cols = set(base_cols + metric_cols)
 
-    quality_df = pd.DataFrame(rows)
+    cache_cfg = cfg["PIPELINE"]
+    cache_enabled = cache_cfg.get("metrics_cache_enabled", True)
+    cache_csv = report_dir / cache_cfg.get("metrics_cache_name", "quality_metrics_cache.csv")
+    cache_meta = report_dir / cache_cfg.get("metrics_cache_meta", "quality_metrics_cache.json")
+    dataset_paths = set(full_df["image_path"].astype(str))
+
+    cache_signature = _metric_signature(
+        {
+            "SHARPNESS": cfg["SHARPNESS"],
+            "FACE": cfg["FACE"],
+            "BLOCKINESS": cfg["BLOCKINESS"],
+            "NR_IQA": cfg["NR_IQA"],
+            "BLACK_BARS": cfg["BLACK_BARS"],
+        },
+        metric_cols,
+    )
+
+    quality_df: pd.DataFrame | None = None
+    if cache_enabled and cache_csv.exists() and cache_meta.exists():
+        try:
+            meta = json.loads(cache_meta.read_text(encoding="utf-8"))
+            if meta.get("signature") == cache_signature:
+                cached_df = pd.read_csv(cache_csv)
+                if required_cols.issubset(cached_df.columns) and set(cached_df["image_path"].astype(str)) == dataset_paths:
+                    quality_df = cached_df
+                    _LOGGER.info("Using cached metrics at %s", cache_csv)
+        except Exception as exc:  # pragma: no cover - defensive
+            _LOGGER.warning("Failed to load metrics cache: %s", exc)
+
+    if quality_df is None:
+        rows = []
+        for row in tqdm(full_df.itertuples(index=False), total=len(full_df), mininterval=1.0):
+            metrics = compute_image_metrics(Path(row.image_path), cfg)
+            rows.append(
+                {
+                    "imageId": int(row.imageId),
+                    "split": row.split,
+                    "age": int(row.age),
+                    "gender": row.gender,
+                    "ethnicity": row.ethnicity,
+                    "emotion": row.emotion,
+                    "image_path": str(row.image_path),
+                    **metrics,
+                }
+            )
+        quality_df = pd.DataFrame(rows)
+
+        if cache_enabled:
+            quality_df.to_csv(cache_csv, index=False)
+            cache_meta.write_text(
+                json.dumps(
+                    {
+                        "signature": cache_signature,
+                        "dataset_root": str(dataset_root),
+                        "image_count": len(quality_df),
+                        "metric_cols": metric_cols,
+                    },
+                    indent=2,
+                ),
+                encoding="utf-8",
+            )
 
     drop_reasons = []
     keeps = []
@@ -197,6 +292,21 @@ def run_pipeline(
 
     quality_df["drop_reasons"] = drop_reasons
     quality_df["keep"] = keeps
+
+    drop_worst_frac = cfg["PIPELINE"].get("drop_worst_frac", 0.0)
+    if drop_worst_frac and drop_worst_frac > 0:
+        quality_df["badness_score"] = _compute_badness(
+            quality_df,
+            cfg["PIPELINE"].get("drop_worst_metrics_hi", []),
+            cfg["PIPELINE"].get("drop_worst_metrics_lo", []),
+        )
+        cutoff = quality_df["badness_score"].quantile(1 - drop_worst_frac)
+        worst_mask = quality_df["badness_score"] > cutoff
+        for idx, is_worst in enumerate(worst_mask):
+            if is_worst:
+                drop_reasons[idx].append("worst_quality_percentile")
+        quality_df["keep"] = quality_df["keep"] & ~worst_mask
+
     quality_df["drop_reasons_str"] = quality_df["drop_reasons"].apply(
         lambda r: ";".join(r) if r else ""
     )

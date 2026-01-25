@@ -13,10 +13,12 @@ The current dataset includes blurry, noisy, and low-quality images. When the LoR
 
 ## Current pipeline entrypoints
 - Script: `python -m dataset_quality.pipeline --dataset-root datasets/appa-real-dataset_v2 --output-root datasets/appa-real-dataset_v2_improved`
-- Notebook: `0_dataset_quality.ipynb`
+- Notebook: `0_dataset_quality_enhance.ipynb`
 - Review notebook: `0_dataset_quality_review.ipynb`
 - Config: `dataset_quality/config.py`
 - Cleaned dataset: `datasets/appa-real-dataset_v2_improved` (same layout as `datasets/appa-real-dataset_v2`)
+- Pipeline drops the worst 20% by composite badness score (see `dataset_quality/config.py`).
+- Quality metrics are cached under the output `reports/` folder when inputs/config match.
 
 ## NIQE/BRISQUE dependencies
 - Preferred: OpenCV quality module via `opencv-contrib-python` (uses `cv2.quality`).

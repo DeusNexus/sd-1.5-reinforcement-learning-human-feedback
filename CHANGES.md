@@ -2,13 +2,24 @@
 
 This file records implemented changes in chronological order. New entries go at the top.
 
-## Entry 017 (latest) - 25-01-2025
+## Entry 019 (latest) - 25-01-2026
+- Dataset quality pipeline now drops the worst 20% by composite badness score (configurable in `dataset_quality/config.py`).
+- Renamed the dataset quality notebook to `0_dataset_quality_enhance.ipynb`.
+- Added metrics caching to reuse computed quality scores when inputs/config match.
+
+## Entry 018 - 25-01-2026
+- Base LoRA training now uses aspect-ratio-preserving resize + crop with bicubic interpolation and reduced color jitter.
+- Switched training noise scheduler to `DDPMScheduler` and replaced cosine restarts with `CosineAnnealingLR` for stability.
+- Added validation loss computation and tracking; checkpoints now follow validation loss when available.
+- Updated default scratch-run learning rate to 1e-4 for smoother convergence.
+
+## Entry 017 - 25-01-2025
 - Documented the cleaned dataset at `datasets/appa-real-dataset_v2_improved` as the base LoRA training source.
-- Updated dataset quality notebook references to `0_dataset_quality.ipynb` and `0_dataset_quality_review.ipynb`.
+- Updated dataset quality notebook references to `0_dataset_quality_enhance.ipynb` and `0_dataset_quality_review.ipynb`.
 - Removed stale references to the black-bar review notebook.
 
 ## Entry 016 - 24-01-2025
-- Replaced `5_dataset_improvement.ipynb` with the modular dataset quality pipeline (`dataset_quality/`) and notebooks `0_dataset_quality.ipynb` + `0_dataset_quality_review.ipynb`.
+- Replaced `5_dataset_improvement.ipynb` with the modular dataset quality pipeline (`dataset_quality/`) and notebooks `0_dataset_quality_enhance.ipynb` + `0_dataset_quality_review.ipynb`.
 - Removed `5_dataset_improvement.ipynb` from the repo.
 
 ## Entry 015 - 23-01-2025

@@ -68,4 +68,19 @@ PIPELINE = {
     "link_mode": "copy",  # copy, hardlink, symlink
     "random_seed": 42,
     "sample_grid_size": 16,
+    "drop_worst_frac": 0.2,
+    "metrics_cache_enabled": True,
+    "metrics_cache_name": "quality_metrics_cache.csv",
+    "metrics_cache_meta": "quality_metrics_cache.json",
+    "drop_worst_metrics_hi": [
+        "jpeg_blockiness",
+        "niqe",
+        "brisque",
+        "black_bar_score",
+        "artifact_score",
+    ],
+    "drop_worst_metrics_lo": [
+        "roi_tenengrad",
+        "roi_lap_var",
+    ],
 }

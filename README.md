@@ -31,19 +31,26 @@ Open the review notebook:
 jupyter lab
 ```
 Then run:
-- `0_dataset_quality.ipynb`
+- `0_dataset_quality_enhance.ipynb`
 - `0_dataset_quality_review.ipynb`
 
 ## Repository map (what to look at)
 
 ### Dataset quality (cleaning + analysis)
 - `dataset_quality/` — modular pipeline (metrics, rules, reporting).
-- `0_dataset_quality.ipynb` — runs the pipeline.
+- `0_dataset_quality_enhance.ipynb` — runs the pipeline.
 - `0_dataset_quality_review.ipynb` — visual review, metric distributions, label distributions.
 
 ### Base LoRA training
 - `1_diffusion_rl_base.ipynb` — local training notebook.
 - `1_diffusion_rl_base_colab_v2.ipynb` — Colab version.
+
+### Training notes
+- Base LoRA training resizes with bicubic interpolation and crops to 512 without aspect-ratio distortion.
+- Training history logs both train and validation loss in `lora_training_runs/*/training_history.json`.
+- Checkpoint selection follows validation loss when available.
+- Dataset quality pipeline drops the worst 20% by composite badness score (configurable in `dataset_quality/config.py`).
+- Dataset quality metrics are cached under `datasets/appa-real-dataset_v2_improved/reports/` when inputs/config match.
 
 ### RLHF data generation + rating
 - `2_generate_prompts.ipynb` — prompt grid builder.

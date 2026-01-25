@@ -237,7 +237,7 @@ This plan is consistent with what is built so far, except the DPO training loop 
 - `datasets/appa-real-dataset_v2_improved/reports/quality_report.csv`
 - `datasets/appa-real-dataset_v2_improved/reports/dropped_images.csv`
 - `datasets/appa-real-dataset_v2_improved/reports/kept_images.csv`
-- Review notebooks: `0_dataset_quality.ipynb`, `0_dataset_quality_review.ipynb`
+- Review notebooks: `0_dataset_quality_enhance.ipynb`, `0_dataset_quality_review.ipynb`
 
 ## How this differs from the old chats
 The old chats focused on planning and feasibility. The repo now shows that:

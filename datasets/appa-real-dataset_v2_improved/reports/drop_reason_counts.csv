@@ -1,8 +1,9 @@
 drop_reasons,count
-niqe,778
-brisque,744
-roi_blur_laplacian,460
-roi_blur_tenengrad,115
-jpeg_blockiness,86
-black_bars_area,81
-black_bars_score,22
+worst_quality_percentile,1518
+roi_blur_laplacian,313
+roi_blur_tenengrad,152
+black_bars_area,109
+jpeg_blockiness,48
+brisque,38
+black_bars_score,24
+niqe,12

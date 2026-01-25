@@ -1,0 +1,23 @@
+{
+  "signature": "b0bc8a8ea7d888f6da487151f0a1752bd10c2d6203c7df01145fd945b459069a",
+  "dataset_root": "/home/fox/Desktop/Projects/Amrita RLHF/Diffusion_RL_Abi/datasets/appa-real-dataset_v2",
+  "image_count": 7591,
+  "metric_cols": [
+    "load_error",
+    "lap_var",
+    "tenengrad",
+    "roi_lap_var",
+    "roi_tenengrad",
+    "face_found",
+    "face_area_ratio",
+    "jpeg_blockiness",
+    "artifact_score",
+    "niqe",
+    "brisque",
+    "black_bar_score",
+    "black_bar_area_ratio",
+    "black_bar_span_ratio",
+    "black_bar_solid",
+    "black_bar_count"
+  ]
+}

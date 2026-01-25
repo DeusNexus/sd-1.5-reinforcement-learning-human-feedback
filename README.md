@@ -57,17 +57,75 @@ We start from:
 We produce a cleaned dataset at:
 - `datasets/appa-real-dataset_v2_improved`
 
+### Download and place the initial dataset
+Download the APPA-Real release:
+`https://data.chalearnlap.cvc.uab.cat/AppaRealAge/appa-real-release.zip`
+
+Place the extracted dataset folder here:
+`datasets/appa-real-dataset_v2`
+
+Expected layout:
+```bash
+.
+├── datasets
+│   └── appa-real-dataset_v2
+│       ├── test_data
+│       ├── train_data
+│       ├── valid_data
+│       ├── labels_metadata_test.csv
+│       ├── labels_metadata_train.csv
+│       └── labels_metadata_valid.csv
+```
+
+For this project we only keep:
+- `*.jpg` images
+- `datasets/appa-real-dataset_v2/labels_metadata_test.csv`
+- `datasets/appa-real-dataset_v2/labels_metadata_train.csv`
+- `datasets/appa-real-dataset_v2/labels_metadata_valid.csv`
+
+The original zip is ~844 MB; the reduced (unfiltered) dataset is ~130 MB.
+
 The improved dataset is rebuilt by filtering low-quality images based on:
 - Sharpness (Laplacian variance + Tenengrad)
 - Compression artifacts (JPEG blockiness)
 - NR-IQA (NIQE + BRISQUE)
 - Black bars (solid border bars)
 
-## Quality distributions (before vs kept)
-These plots are generated from `datasets/appa-real-dataset_v2_improved/reports/quality_report.csv` and saved to `docs/figures/`.
+### APPA-REAL dataset citation (reference)
+Source: https://chalearnlap.cvc.uab.cat/dataset/26/description/
 
-![Metric distributions](docs/figures/metric_distributions.png)
-![Label distributions](docs/figures/label_distributions.png)
+> **APPA-REAL DATABASE**  
+> The APPA-REAL database contains 7,591 images with associated real and apparent age labels. The total number of apparent votes is around 250,000. On average we have around 38 votes per each image and this makes the average apparent age very stable (0.3 standard error of the mean).  
+>  
+> The images are split into 4113 train, 1500 valid and 1978 test images, provided in the folders train/, valid/ and test/. For each image X.jpg, we also provide a corresponding X.jpg_face.jpg which contains the cropped & rotated face with a 40% margin obtained from the Mathias et. al face detector (http://markusmathias.bitbucket.org/2014_eccv_face_detection/) at multiple rotations. Furthermore, an X.jpg.mat file is provided with meta-information about the detected face.  
+>  
+> The real age and apparent age ratings are provided in the files gt_train.csv, gt_test.csv and gt_valid.csv, with a separate row for each rating.  
+>  
+> Furthermore, we provide per-image summaries in gt_avg_train.csv, gt_avg_valid.csv and gt_avg_test.csv, showing the number of ratings, average apparent age, standard deviation of apparent age and the real age for each image. A comparison of Age datasets characteristics is shown in the table 1.
+
+## Quality distributions (before vs kept)
+These plots are generated from `datasets/appa-real-dataset_v2_improved/reports/quality_report.csv` via `notebooks/dataset_quality_review.ipynb` and saved under `images/`.
+
+- `images/roi_tenengrad.png`: ROI Tenengrad sharpness distribution (before vs kept).
+  ![ROI Tenengrad](images/roi_tenengrad.png)
+- `images/roi_lap_var.png`: ROI Laplacian variance distribution (before vs kept, log1p).
+  ![ROI Laplacian Var](images/roi_lap_var.png)
+- `images/jpg_blockiness.png`: JPEG blockiness distribution (before vs kept).
+  ![JPEG blockiness](images/jpg_blockiness.png)
+- `images/niqe.png`: NIQE distribution (before vs kept, sqrt).
+  ![NIQE](images/niqe.png)
+- `images/brisque.png`: BRISQUE distribution (before vs kept).
+  ![BRISQUE](images/brisque.png)
+- `images/bar_score.png`: Black-bar score distribution (before vs kept).
+  ![Black bar score](images/bar_score.png)
+- `images/age.png`: Age distribution (before vs kept).
+  ![Age distribution](images/age.png)
+- `images/gender.png`: Gender distribution (before vs kept, fraction).
+  ![Gender distribution](images/gender.png)
+- `images/ethnicity.png`: Ethnicity distribution (before vs kept, fraction).
+  ![Ethnicity distribution](images/ethnicity.png)
+- `images/emotion.png`: Emotion distribution (before vs kept, fraction).
+  ![Emotion distribution](images/emotion.png)
 
 ## Outputs
 - Cleaned dataset: `datasets/appa-real-dataset_v2_improved/`

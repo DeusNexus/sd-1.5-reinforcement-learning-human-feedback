@@ -5,3 +5,5 @@ venv
 __pycache__
 docs
 .torch_cache
+datasets/_downloads
+datasets/appa-real-dataset_v2

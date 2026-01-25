@@ -130,28 +130,28 @@ BibTeX:
 ```
 
 ## Quality distributions (before vs kept)
-These plots are generated from `datasets/appa-real-dataset_v2_improved/reports/quality_report.csv` via `0_dataset_quality_review.ipynb` and saved under `images/`.
+These plots are generated from `datasets/appa-real-dataset_v2_improved/reports/quality_report.csv` via `0_dataset_quality_review.ipynb` and saved under `figures/`.
 
-- `images/roi_tenengrad.png`: ROI Tenengrad sharpness distribution (before vs kept).
-  ![ROI Tenengrad](images/roi_tenengrad.png)
-- `images/roi_lap_var.png`: ROI Laplacian variance distribution (before vs kept, log1p).
-  ![ROI Laplacian Var](images/roi_lap_var.png)
-- `images/jpg_blockiness.png`: JPEG blockiness distribution (before vs kept).
-  ![JPEG blockiness](images/jpg_blockiness.png)
-- `images/niqe.png`: NIQE distribution (before vs kept, sqrt).
-  ![NIQE](images/niqe.png)
-- `images/brisque.png`: BRISQUE distribution (before vs kept).
-  ![BRISQUE](images/brisque.png)
-- `images/bar_score.png`: Black-bar score distribution (before vs kept).
-  ![Black bar score](images/bar_score.png)
-- `images/age.png`: Age distribution (before vs kept).
-  ![Age distribution](images/age.png)
-- `images/gender.png`: Gender distribution (before vs kept, fraction).
-  ![Gender distribution](images/gender.png)
-- `images/ethnicity.png`: Ethnicity distribution (before vs kept, fraction).
-  ![Ethnicity distribution](images/ethnicity.png)
-- `images/emotion.png`: Emotion distribution (before vs kept, fraction).
-  ![Emotion distribution](images/emotion.png)
+- `figures/roi_tenengrad.png`: ROI Tenengrad sharpness distribution (before vs kept).
+  ![ROI Tenengrad](figures/roi_tenengrad.png)
+- `figures/roi_lap_var.png`: ROI Laplacian variance distribution (before vs kept, log1p).
+  ![ROI Laplacian Var](figures/roi_lap_var.png)
+- `figures/jpg_blockiness.png`: JPEG blockiness distribution (before vs kept).
+  ![JPEG blockiness](figures/jpg_blockiness.png)
+- `figures/niqe.png`: NIQE distribution (before vs kept, sqrt).
+  ![NIQE](figures/niqe.png)
+- `figures/brisque.png`: BRISQUE distribution (before vs kept).
+  ![BRISQUE](figures/brisque.png)
+- `figures/bar_score.png`: Black-bar score distribution (before vs kept).
+  ![Black bar score](figures/bar_score.png)
+- `figures/age.png`: Age distribution (before vs kept).
+  ![Age distribution](figures/age.png)
+- `figures/gender.png`: Gender distribution (before vs kept, fraction).
+  ![Gender distribution](figures/gender.png)
+- `figures/ethnicity.png`: Ethnicity distribution (before vs kept, fraction).
+  ![Ethnicity distribution](figures/ethnicity.png)
+- `figures/emotion.png`: Emotion distribution (before vs kept, fraction).
+  ![Emotion distribution](figures/emotion.png)
 
 ## Outputs
 - Cleaned dataset: `datasets/appa-real-dataset_v2_improved/`

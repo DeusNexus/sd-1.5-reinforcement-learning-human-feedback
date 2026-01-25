@@ -3,4 +3,5 @@ venv
 *.pth
 .gradio
 __pycache__
-rlhf_generation_data
+docs
+.torch_cache

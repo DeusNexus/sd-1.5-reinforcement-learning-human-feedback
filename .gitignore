@@ -8,3 +8,5 @@ docs
 datasets/_downloads
 datasets/appa-real-dataset_v2
 archived
+*.pth
+*.safetensor

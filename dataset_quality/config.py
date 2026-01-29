@@ -48,19 +48,19 @@ BLACK_BARS = {
 
 THRESH = {
     # Blur / sharpness
-    "roi_tenengrad_min": 20.0,
-    "roi_lap_var_min": 15.0,
+    "roi_tenengrad_min": 30.0,
+    "roi_lap_var_min": 60.0,
     "global_tenengrad_min": None,
     "global_lap_var_min": None,
     # Compression artifacts
-    "jpeg_blockiness_max": 2.0,
+    "jpeg_blockiness_max": 1.0,
     "jpeg_blockiness_hi": 15.0,
-    "niqe_hi": 11.7,
+    "niqe_hi": 11.0,
     # NR-IQA
-    "niqe_max": 10.6,
-    "brisque_max": 73.2,
+    "niqe_max": 5.76,
+    "brisque_max": 36.5,
     # Black bars
-    "black_bar_score_min": 0.5,
+    "black_bar_score_min": 0.25,
     "black_bar_area_max": 0.20,
 }
 
@@ -69,9 +69,22 @@ PIPELINE = {
     "random_seed": 42,
     "sample_grid_size": 16,
     "drop_worst_frac": 0.2,
+    "drop_worst_by_age_bin": True,
+    "drop_worst_age_bin_size": 5,
+    "drop_worst_min_keep_per_bin": 200,
     "metrics_cache_enabled": True,
     "metrics_cache_name": "quality_metrics_cache.csv",
     "metrics_cache_meta": "quality_metrics_cache.json",
+    # Relative influence for worst-percentile scoring (higher = more influence).
+    "drop_worst_metric_weights": {
+        "niqe": 2.0,
+        "brisque": 2.0,
+        "jpeg_blockiness": 0.5,
+        "black_bar_score": 0.5,
+        "artifact_score": 0.5,
+        "roi_tenengrad": 0.5,
+        "roi_lap_var": 0.5,
+    },
     "drop_worst_metrics_hi": [
         "jpeg_blockiness",
         "niqe",

@@ -6,6 +6,7 @@ import argparse
 import hashlib
 import json
 import logging
+import math
 import warnings
 from pathlib import Path
 from typing import Any
@@ -160,17 +161,29 @@ def _compute_badness(
     df: pd.DataFrame,
     higher_is_worse: list[str],
     lower_is_worse: list[str],
+    weights: dict[str, float] | None = None,
 ) -> pd.Series:
     parts = []
+    part_weights = []
+    weights = weights or {}
     for metric in higher_is_worse:
         if metric in df.columns:
-            parts.append(df[metric].rank(pct=True, ascending=True, na_option="bottom"))
+            w = float(weights.get(metric, 1.0))
+            if w <= 0:
+                continue
+            parts.append(df[metric].rank(pct=True, ascending=True, na_option="bottom") * w)
+            part_weights.append(w)
     for metric in lower_is_worse:
         if metric in df.columns:
-            parts.append(df[metric].rank(pct=True, ascending=False, na_option="bottom"))
+            w = float(weights.get(metric, 1.0))
+            if w <= 0:
+                continue
+            parts.append(df[metric].rank(pct=True, ascending=False, na_option="bottom") * w)
+            part_weights.append(w)
     if not parts:
         return pd.Series([0.0] * len(df), index=df.index)
-    return pd.concat(parts, axis=1).mean(axis=1)
+    denom = sum(part_weights) if part_weights else 1.0
+    return pd.concat(parts, axis=1).sum(axis=1) / denom
 
 
 def run_pipeline(
@@ -299,10 +312,37 @@ def run_pipeline(
             quality_df,
             cfg["PIPELINE"].get("drop_worst_metrics_hi", []),
             cfg["PIPELINE"].get("drop_worst_metrics_lo", []),
+            cfg["PIPELINE"].get("drop_worst_metric_weights", {}),
         )
-        cutoff = quality_df["badness_score"].quantile(1 - drop_worst_frac)
-        worst_mask = quality_df["badness_score"] > cutoff
-        for idx, is_worst in enumerate(worst_mask):
+        stratify_by_age = cfg["PIPELINE"].get("drop_worst_by_age_bin", False)
+        age_bin_size = int(cfg["PIPELINE"].get("drop_worst_age_bin_size", 5) or 5)
+        min_keep_per_bin = int(cfg["PIPELINE"].get("drop_worst_min_keep_per_bin", 0) or 0)
+
+        worst_mask = pd.Series([False] * len(quality_df), index=quality_df.index)
+
+        if stratify_by_age:
+            age_bins = (quality_df["age"] // age_bin_size) * age_bin_size
+            quality_df["_age_bin"] = age_bins
+            for age_bin, grp in quality_df.groupby("_age_bin", sort=True):
+                if grp.empty:
+                    continue
+                cutoff = grp["badness_score"].quantile(1 - drop_worst_frac)
+                bin_mask = grp["badness_score"] > cutoff
+                # Enforce minimum keep per bin if requested
+                if min_keep_per_bin > 0:
+                    max_drop = max(0, len(grp) - min_keep_per_bin)
+                    if bin_mask.sum() > max_drop:
+                        # Drop only the worst max_drop samples in this bin
+                        ranked = grp["badness_score"].sort_values(ascending=False)
+                        drop_idx = ranked.head(max_drop).index
+                        bin_mask = grp.index.isin(drop_idx)
+                worst_mask.loc[grp.index] = bin_mask
+            quality_df = quality_df.drop(columns=["_age_bin"])
+        else:
+            cutoff = quality_df["badness_score"].quantile(1 - drop_worst_frac)
+            worst_mask = quality_df["badness_score"] > cutoff
+
+        for idx, is_worst in worst_mask.items():
             if is_worst:
                 drop_reasons[idx].append("worst_quality_percentile")
         quality_df["keep"] = quality_df["keep"] & ~worst_mask
@@ -314,7 +354,14 @@ def run_pipeline(
     write_reports(
         quality_df,
         report_dir=report_dir,
-        worst_metrics=["roi_tenengrad", "roi_lap_var", "jpeg_blockiness", "niqe", "black_bar_score"],
+        worst_metrics=[
+            "roi_tenengrad",
+            "roi_lap_var",
+            "jpeg_blockiness",
+            "niqe",
+            "brisque",
+            "black_bar_score",
+        ],
     )
 
     kept_df = quality_df[quality_df["keep"]].copy()

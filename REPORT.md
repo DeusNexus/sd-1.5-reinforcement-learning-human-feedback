@@ -239,6 +239,12 @@ This plan is consistent with what is built so far, except the DPO training loop 
 - `datasets/appa-real-dataset_v2_improved/reports/kept_images.csv`
 - Review notebooks: `0_dataset_quality_enhance.ipynb`, `0_dataset_quality_review.ipynb`
 
+**Latest cleaning stats (2026-01-27):**
+- Total images: 7,591; kept: 5,768; dropped: 1,823 (24.02%).
+- Worst-quality percentile drop: 1,518 (20.00%), weighted toward NIQE/BRISQUE (2.0) over other metrics (0.5).
+- Additional drop reasons (non-exclusive counts): roi_blur_laplacian 313, roi_blur_tenengrad 152, black_bars_area 109, brisque 64, jpeg_blockiness 48, black_bars_score 24, niqe 23.
+- Source: `datasets/appa-real-dataset_v2_improved/reports/quality_report.csv`.
+
 ## How this differs from the old chats
 The old chats focused on planning and feasibility. The repo now shows that:
 - Base LoRA training **has been implemented and run**, with real checkpoints.

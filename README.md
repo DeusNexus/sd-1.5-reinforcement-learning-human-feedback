@@ -168,6 +168,13 @@ These plots are generated from `datasets/appa-real-dataset_v2_improved/reports/q
   - `dropped_images.csv`
   - `drop_reason_counts.csv`
 
+## Latest cleaning stats (2026-01-27)
+- Source: `datasets/appa-real-dataset_v2_improved/reports/quality_report.csv`.
+- Total images: 7,591; kept: 5,768; dropped: 1,823 (24.02%).
+- Worst-quality percentile drop: 1,518 (20.00%), weighted toward NIQE/BRISQUE (2.0) over other metrics (0.5).
+- Additional drop reasons (non-exclusive counts): roi_blur_laplacian 313, roi_blur_tenengrad 152, black_bars_area 109, brisque 64, jpeg_blockiness 48, black_bars_score 24, niqe 23.
+- Current NR-IQA thresholds: NIQE max 10.0, BRISQUE max 70.0 (see `dataset_quality/config.py`).
+
 ## Notes on NIQE/BRISQUE
 - NIQE is computed with `pyiqa` (CPU).
 - BRISQUE uses `opencv-contrib-python` if model files exist, otherwise falls back to `piq`.

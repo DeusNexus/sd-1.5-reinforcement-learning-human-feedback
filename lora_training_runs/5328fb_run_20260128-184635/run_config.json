@@ -1,0 +1,29 @@
+{
+    "num_epochs": 10,
+    "learning_rate": 1e-05,
+    "lora_r": 64,
+    "lora_alpha": 64,
+    "lora_dropout": 0.05,
+    "track_performance": true,
+    "perf_log_interval_sec": 5.0,
+    "gradient_checkpoint_enable": true,
+    "gradient_accumulation_steps": 4,
+    "use_mixed_precision": true,
+    "optimizer": "AdamW",
+    "scheduler": "plateau",
+    "scheduler_min_lr": 1e-06,
+    "scheduler_patience": 1,
+    "scheduler_factor": 0.5,
+    "scheduler_threshold": 0.0001,
+    "target_modules": [
+        "to_q",
+        "to_v"
+    ],
+    "batch_size": 5,
+    "train_dataset_size": 635,
+    "valid_dataset_size": 236,
+    "device": "cuda",
+    "perf_log_path": "lora_training_runs/5328fb_run_20260128-184635/perf_log.jsonl",
+    "cuda_name": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "cuda_total_vram_gb": 5.643
+}

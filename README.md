@@ -168,12 +168,12 @@ These plots are generated from `datasets/appa-real-dataset_v2_improved/reports/q
   - `dropped_images.csv`
   - `drop_reason_counts.csv`
 
-## Latest cleaning stats (2026-01-27)
+## Latest cleaning stats (2026-01-29)
 - Source: `datasets/appa-real-dataset_v2_improved/reports/quality_report.csv`.
-- Total images: 7,591; kept: 5,768; dropped: 1,823 (24.02%).
-- Worst-quality percentile drop: 1,518 (20.00%), weighted toward NIQE/BRISQUE (2.0) over other metrics (0.5).
-- Additional drop reasons (non-exclusive counts): roi_blur_laplacian 313, roi_blur_tenengrad 152, black_bars_area 109, brisque 64, jpeg_blockiness 48, black_bars_score 24, niqe 23.
-- Current NR-IQA thresholds: NIQE max 10.0, BRISQUE max 70.0 (see `dataset_quality/config.py`).
+- Total images: 7,591; kept: 3,735; dropped: 3,856 (50.80%).
+- Worst-quality percentile drop: 1,394 (18.36%), weighted toward NIQE/BRISQUE (2.0) over other metrics (0.5), **stratified by 5-year age bins** with a minimum keep of 200 per bin.
+- Additional drop reasons (non-exclusive counts): brisque 2,614; niqe 2,366; roi_blur_laplacian 1,410; roi_blur_tenengrad 587; black_bars_score 494; jpeg_blockiness 238; black_bars_area 109.
+- Current NR-IQA thresholds: NIQE max 5.76 (sqrt 2.4), BRISQUE max 36.5 (see `dataset_quality/config.py`).
 
 ## Notes on NIQE/BRISQUE
 - NIQE is computed with `pyiqa` (CPU).

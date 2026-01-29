@@ -1,0 +1,57 @@
+{
+    "epochs": [
+        {
+            "epoch": 1,
+            "train_loss": 0.15285537206982344,
+            "val_loss": 0.14679138578714862,
+            "best_loss": 0.14679138578714862,
+            "saved_this_epoch": true,
+            "sample_prompt": "A 50 years old caucasian male with a neutral expression",
+            "sample_image_path": "lora_training_runs/8436e6_run_20260129-162112/lora_samples/sample_epoch_1.png",
+            "lora_adapter_path": "lora_training_runs/8436e6_run_20260129-162112/lora_checkpoints/best_lora_adapter/adapter_model.safetensors",
+            "full_unet_checkpoint_path": "lora_training_runs/8436e6_run_20260129-162112/lora_checkpoints/best_full_unet_checkpoint.pth",
+            "learning_rate": 8.018433179723503e-06,
+            "avg_grad_norm": 0.00436821446925316,
+            "max_grad_norm": 0.0059509300626814365,
+            "min_grad_norm": 0.002784573007375002,
+            "last_grad_norm": 0.004938241094350815,
+            "epoch_time_sec": 815.9983069359987,
+            "avg_step_time_sec": 2.217609050973843,
+            "steps_per_sec": 0.4240204876149796,
+            "max_allocated_vram_gb": 3.914759635925293,
+            "max_reserved_vram_gb": 4.673828125,
+            "total_vram_gb": 5.643
+        }
+    ],
+    "config": {
+        "num_epochs": 25,
+        "learning_rate": 2e-05,
+        "lora_r": 64,
+        "lora_alpha": 64,
+        "lora_dropout": 0.05,
+        "track_performance": true,
+        "perf_log_interval_sec": 5.0,
+        "gradient_checkpoint_enable": true,
+        "gradient_accumulation_steps": 4,
+        "use_mixed_precision": true,
+        "optimizer": "AdamW",
+        "scheduler": "plateau",
+        "scheduler_min_lr": 1e-06,
+        "scheduler_patience": 2,
+        "scheduler_factor": 0.3,
+        "scheduler_threshold": 0.0001,
+        "target_modules": [
+            "to_q",
+            "to_v"
+        ],
+        "batch_size": 5,
+        "train_dataset_size": 1727,
+        "valid_dataset_size": 771,
+        "device": "cuda",
+        "perf_log_path": "lora_training_runs/8436e6_run_20260129-162112/perf_log.jsonl",
+        "cuda_name": "NVIDIA GeForce RTX 3060 Laptop GPU",
+        "cuda_total_vram_gb": 5.643,
+        "train_images_dir": "datasets/appa-real-dataset_v2_improved/train_data",
+        "valid_images_dir": "datasets/appa-real-dataset_v2_improved/valid_data"
+    }
+}

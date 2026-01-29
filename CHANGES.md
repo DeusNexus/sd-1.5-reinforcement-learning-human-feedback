@@ -2,7 +2,13 @@
 
 This file records implemented changes in chronological order. New entries go at the top.
 
-## Entry 019 (latest) - 25-01-2026
+## Entry 020 (latest) - 29-01-2026
+- Tightened dataset quality hard thresholds (NIQE/BRISQUE/blur/black bars/JPEG blockiness) in `dataset_quality/config.py`.
+- Stratified worst-percentile pruning by 5-year age bins with a minimum keep of 200 per bin.
+- Added quality-ranked caps in `1_0_diffusion_rl_base_explore.ipynb` and `1_2_diffusion_rl_base.ipynb` to keep the best images per age bin.
+- Updated dataset cleaning documentation and latest stats in `README.md`, `REPORT.md`, and `datasets/README.md`.
+
+## Entry 019 - 25-01-2026
 - Dataset quality pipeline now drops the worst 20% by composite badness score (configurable in `dataset_quality/config.py`).
 - Renamed the dataset quality notebook to `0_dataset_quality_enhance.ipynb`.
 - Added metrics caching to reuse computed quality scores when inputs/config match.
